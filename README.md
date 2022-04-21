@@ -1,1 +1,0 @@
-# stat4012model
