@@ -8,6 +8,11 @@ from Data import Data, generate_dataset
 from statsmodels.tsa.stattools import acf
 
 
+start = "2012-03-02"
+end = "2020-03-02"
+ticker = "CL=F"
+df = yf.download(ticker, start=start, end=end, progress=False)
+
 tf.random.set_seed(4012)
 # STOCKS_TRAIN = ["OXY", "MRO", "GE", "AEP"]
 # STOCKS_TEST = ["CL=F"]
@@ -47,3 +52,24 @@ for stock in STOCKS:
     # plt.savefig("Prediction of " + stock + ".png")
     plt.show()
 
+
+
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    smaller = []
+    equal = []
+    larger = []
+    pivot = arr[0]
+    for num in arr:
+        if num < pivot:
+            smaller.append(num)
+        elif num == pivot:
+            equal.append(num)
+        else:
+            larger.append(num)
+    list = []
+    list.extend(quicksort(smaller))
+    list.extend(equal)
+    list.extend(quicksort(larger))
+    return list
